@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".GhibliApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -23,6 +24,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <provider
+            android:name="com.nuncamaria.navigation.viewloaderpath.NavigationRouteProvider"
+            android:authorities="com.nuncamaria.navigation.provider"
+            android:exported="false"
+            tools:node="merge">
+
+            <meta-data
+                android:name="com.nuncamaria.films.loader.FilmsModuleEntryPointLoader"
+                android:value=":films"
+                tools:node="merge" />
+        </provider>
+    </application>
 </manifest>
