@@ -21,4 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Ghibli API"
 include(":app")
-include(":network")
+include(":core:network")
+include(":core:ui")
+include(":films")
+include(":core:navigation")
