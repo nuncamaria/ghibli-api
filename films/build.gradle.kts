@@ -1,22 +1,19 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.hilt)
     id("kotlin-kapt")
+    id("kotlinx-serialization")
 }
 
 android {
-    namespace = ProjectConfig.APP_ID
+    namespace = ProjectConfig.NAMESPACE_FILMS_MODULE
     compileSdk = ProjectConfig.COMPILE_SDK
 
     defaultConfig {
-        applicationId = ProjectConfig.APP_ID
         minSdk = ProjectConfig.MIN_SDK
-        targetSdk = ProjectConfig.TARGET_SDK
-        versionCode = ProjectConfig.VERSION_CODE
-        versionName = ProjectConfig.VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = ProjectConfig.TEST_INSTRUMENTATION_RUNNER
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -46,15 +43,12 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    kapt {
-        correctErrorTypes = true
-    }
 }
 
 dependencies {
     implementation(project(Modules.NAVIGATION))
     implementation(project(Modules.NETWORK))
-    implementation(project(Modules.FILMS))
+    implementation(project(Modules.UI))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -68,6 +62,7 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.agp)
     kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

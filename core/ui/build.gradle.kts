@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.nuncamaria.network"
+    namespace = "com.nuncamaria.ui"
     compileSdk = 34
 
     defaultConfig {
