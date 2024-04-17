@@ -5,11 +5,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,9 +25,9 @@ fun GhibliApp(appState: GhibliAppState, content: @Composable () -> Unit) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(title = {
-                Text(text = "testtt")
-            })
+            LargeTopAppBar(
+                title = { Text(text = "Discover Ghibli World") }
+            )
         },
         bottomBar = {
             var selectedItem by remember { mutableStateOf(Films.route) }
@@ -37,7 +37,7 @@ fun GhibliApp(appState: GhibliAppState, content: @Composable () -> Unit) {
 
             if (appState.shouldShowBottomBar) {
                 NavigationBar {
-                    items.forEachIndexed { index, item ->
+                    items.forEach { item ->
                         NavigationBarItem(
                             icon = { Icon(item.icon, contentDescription = item.label) },
                             label = { Text(item.label) },
