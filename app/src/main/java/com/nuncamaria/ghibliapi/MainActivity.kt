@@ -8,7 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.nuncamaria.ghibliapi.ui.GhibliApp
 import com.nuncamaria.ghibliapi.ui.MainViewModel
 import com.nuncamaria.ghibliapi.ui.rememberAppState
-import com.nuncamaria.ghibliapi.ui.theme.GhibliAPITheme
+import com.nuncamaria.ui.theme.GhibliAPITheme
 import com.nuncamaria.navigation.DestinationViewRoute
 import com.nuncamaria.navigation.Navigation
 import com.nuncamaria.ui.splash.splashViewConfig

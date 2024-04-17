@@ -1,4 +1,4 @@
-package com.nuncamaria.ghibliapi.ui.theme
+package com.nuncamaria.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
