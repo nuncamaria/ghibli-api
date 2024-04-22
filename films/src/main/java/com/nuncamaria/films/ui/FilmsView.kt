@@ -25,6 +25,7 @@ import coil.request.ImageRequest
 import com.nuncamaria.films.domain.model.FilmModel
 import com.nuncamaria.ui.utils.UiState
 import com.nuncamaria.ui.view.ErrorView
+import com.nuncamaria.ui.view.LoadingView
 
 @Composable
 fun FilmsView() {
@@ -38,10 +39,10 @@ fun FilmsView() {
         color = MaterialTheme.colorScheme.background
     ) {
         when (films.value) {
+            UiState.Idle -> {}
+            UiState.Loading -> LoadingView()
             is UiState.Success -> FilmsViewContent((films.value as UiState.Success<List<FilmModel>>).data)
             is UiState.Error -> ErrorView((films.value as UiState.Error).message)
-            UiState.Idle -> {}
-            UiState.Loading -> CircularProgressIndicator()
         }
     }
 }
