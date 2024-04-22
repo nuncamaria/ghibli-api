@@ -64,8 +64,7 @@ fun FilmsViewContent(films: List<FilmModel>) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         verticalArrangement = Arrangement.spacedBy(Spacing.md),
-        horizontalArrangement = Arrangement.spacedBy(Spacing.md),
-        userScrollEnabled = false
+        horizontalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
         item(span = { GridItemSpan(maxLineSpan) }) {
             Column(verticalArrangement = Arrangement.spacedBy(Spacing.md)) {
