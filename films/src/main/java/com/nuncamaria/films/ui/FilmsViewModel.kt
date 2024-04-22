@@ -13,18 +13,22 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FilmsViewModel @Inject constructor(private val getFilms: GetFilmsUseCase) : ViewModel() {
+class FilmsViewModel @Inject constructor(private val getFilmsUseCase: GetFilmsUseCase) : ViewModel() {
 
     private val _films: MutableStateFlow<UiState<List<FilmModel>>> = MutableStateFlow(UiState.Idle)
     val films: StateFlow<UiState<List<FilmModel>>> = _films.asStateFlow()
 
     init {
+        getFilms()
+    }
+
+    fun getFilms() {
         _films.value = UiState.Loading
 
         viewModelScope.launch {
-            getFilms()
+            getFilmsUseCase()
                 .onSuccess { _films.value = UiState.Success(it) }
-                .onFailure { _films.value = UiState.Error(it, it.localizedMessage ?: "Error: ${::getFilms}") }
+                .onFailure { _films.value = UiState.Error(it, it.localizedMessage ?: "Error: ${::getFilmsUseCase}") }
         }
     }
 }

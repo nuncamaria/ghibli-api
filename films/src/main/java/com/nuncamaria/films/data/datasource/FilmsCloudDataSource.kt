@@ -15,7 +15,7 @@ class FilmsCloudDataSource @Inject constructor(private val networkService: Netwo
             httpMethod = HttpMethodRequest.GET,
             parameters = linkedMapOf(
                 "fields" to "",
-                "limit" to 10
+                "limit" to null
             )
         )
 }

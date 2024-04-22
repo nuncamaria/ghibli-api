@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Error
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -22,7 +23,7 @@ import com.nuncamaria.ui.theme.Spacing
 import com.nuncamaria.ui.theme.Typography
 
 @Composable
-fun ErrorView(message: String) {
+fun ErrorView(message: String, onErrorClick: (() -> Unit)? = null) {
     Card(
         modifier = Modifier.wrapContentSize(),
         shape = CardDefaults.outlinedShape,
@@ -53,6 +54,12 @@ fun ErrorView(message: String) {
                 textAlign = TextAlign.Center,
                 style = Typography.bodyLarge
             )
+
+            onErrorClick?.let {
+                Button(onClick = onErrorClick) {
+                    Text(text = "Try again")
+                }
+            }
         }
     }
 }

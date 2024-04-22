@@ -16,6 +16,20 @@ private val Kyn = FontFamily(
 )
 
 val Typography = Typography(
+    displayLarge = TextStyle(
+        fontFamily = Kyn,
+        fontWeight = FontWeight.Normal,
+        fontSize = 57.sp,
+        lineHeight = 64.sp,
+        letterSpacing = 0.sp
+    ),
+    displayMedium = TextStyle(
+        fontFamily = Kyn,
+        fontWeight = FontWeight.Normal,
+        fontSize = 45.sp,
+        lineHeight = 52.sp,
+        letterSpacing = 0.sp
+    ),
     headlineLarge = TextStyle(
         fontFamily = Kyn,
         fontWeight = FontWeight.Medium,
