@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import com.nuncamaria.navigation.appnavhostconfig.GhibliAppState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,10 +38,8 @@ fun GhibliApp(appState: GhibliAppState, content: @Composable () -> Unit) {
             )
         },
         bottomBar = {
-            var selectedItem by remember { mutableStateOf(Films.route) }
+            var selectedItem by remember { mutableStateOf(appState.currentTopLevelDestination) }
             val items = appState.topLevelDestinations
-
-            appState.currentTopLevelDestination = selectedItem
 
             if (appState.shouldShowBottomBar) {
                 NavigationBar(containerColor = Color.Unspecified) {

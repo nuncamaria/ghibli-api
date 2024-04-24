@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = ProjectConfig.NAMESPACE_NAVIGATION_MODULE
+    namespace = "com.nuncamaria.navigation"
     compileSdk = ProjectConfig.COMPILE_SDK
 
     defaultConfig {
@@ -39,10 +39,13 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.navigation)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
+    implementation(libs.androidx.material.icons)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

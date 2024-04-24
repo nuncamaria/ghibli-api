@@ -35,6 +35,11 @@
                 android:name="com.nuncamaria.films.loader.FilmsModuleEntryPointLoader"
                 android:value=":films"
                 tools:node="merge" />
+
+            <meta-data
+                android:name="com.nuncamaria.locations.loader.LocationsModuleEntryPointLoader"
+                android:value=":locations"
+                tools:node="merge" />
         </provider>
     </application>
 </manifest>

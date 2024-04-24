@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = ProjectConfig.NAMESPACE_FILMS_MODULE
+    namespace = "com.nuncamaria.films"
     compileSdk = ProjectConfig.COMPILE_SDK
 
     defaultConfig {

@@ -1,4 +1,4 @@
-package com.nuncamaria.ghibliapi.ui
+package com.nuncamaria.navigation.appnavhostconfig
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -18,12 +18,13 @@ fun rememberAppState(navController: NavHostController = rememberNavController())
 
 @Stable
 class GhibliAppState(val navController: NavHostController) {
-    val topLevelDestinations: List<TopLevelDestination> = listOf(Films)
+    val topLevelDestinations: List<TopLevelDestination> = listOf(Films, Locations)
     var currentTopLevelDestination: String = Films.route
 
     val shouldShowBottomBar: Boolean
         get() = when (currentTopLevelDestination) {
             Films.route -> true
+            Locations.route -> true
             else -> false
         }
 
@@ -37,6 +38,7 @@ class GhibliAppState(val navController: NavHostController) {
 
             when (topLevelDestination) {
                 Films -> navController.navigate(Films.route, topLevelNavOptions)
+                Locations -> navController.navigate(Locations.route, topLevelNavOptions)
                 else -> {}
             }
         }

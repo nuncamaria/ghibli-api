@@ -56,6 +56,7 @@ dependencies {
     implementation(project(Modules.NETWORK))
     implementation(project(Modules.UI))
     implementation(project(Modules.FILMS))
+    implementation(project(Modules.LOCATIONS))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
