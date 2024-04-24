@@ -40,6 +40,11 @@
                 android:name="com.nuncamaria.locations.loader.LocationsModuleEntryPointLoader"
                 android:value=":locations"
                 tools:node="merge" />
+
+            <meta-data
+                android:name="com.nuncamaria.people.loader.PeopleModuleEntryPointLoader"
+                android:value=":people"
+                tools:node="merge" />
         </provider>
     </application>
 </manifest>

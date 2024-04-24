@@ -46,6 +46,10 @@ class MainActivity : ComponentActivity() {
                         composable(route = DestinationViewRoute.LOCATIONS.routeId) {
                             Navigation.addComposableView(to = DestinationViewRoute.LOCATIONS.routeId)
                         }
+
+                        composable(route = DestinationViewRoute.PEOPLE.routeId) {
+                            Navigation.addComposableView(to = DestinationViewRoute.PEOPLE.routeId)
+                        }
                     }
                 }
             }

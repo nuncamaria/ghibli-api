@@ -18,13 +18,14 @@ fun rememberAppState(navController: NavHostController = rememberNavController())
 
 @Stable
 class GhibliAppState(val navController: NavHostController) {
-    val topLevelDestinations: List<TopLevelDestination> = listOf(Films, Locations)
+    val topLevelDestinations: List<TopLevelDestination> = listOf(Films, Locations, People)
     var currentTopLevelDestination: String = Films.route
 
     val shouldShowBottomBar: Boolean
         get() = when (currentTopLevelDestination) {
             Films.route -> true
             Locations.route -> true
+            People.route -> true
             else -> false
         }
 
@@ -39,6 +40,7 @@ class GhibliAppState(val navController: NavHostController) {
             when (topLevelDestination) {
                 Films -> navController.navigate(Films.route, topLevelNavOptions)
                 Locations -> navController.navigate(Locations.route, topLevelNavOptions)
+                People -> navController.navigate(People.route, topLevelNavOptions)
                 else -> {}
             }
         }

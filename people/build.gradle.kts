@@ -1,25 +1,20 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.hilt)
     id("kotlin-kapt")
+    id("kotlinx-serialization")
 }
 
 android {
-    namespace = ProjectConfig.APP_ID
+    namespace = "com.nuncamaria.people"
     compileSdk = ProjectConfig.COMPILE_SDK
 
     defaultConfig {
-        applicationId = ProjectConfig.APP_ID
         minSdk = ProjectConfig.MIN_SDK
-        targetSdk = ProjectConfig.TARGET_SDK
-        versionCode = ProjectConfig.VERSION_CODE
-        versionName = ProjectConfig.VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        testInstrumentationRunner = ProjectConfig.TEST_INSTRUMENTATION_RUNNER
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -41,36 +36,28 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    kapt {
-        correctErrorTypes = true
-    }
 }
 
 dependencies {
     implementation(project(Modules.NAVIGATION))
     implementation(project(Modules.NETWORK))
     implementation(project(Modules.UI))
-    implementation(project(Modules.FILMS))
-    implementation(project(Modules.LOCATIONS))
-    implementation(project(Modules.PEOPLE))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.agp)
     kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 }

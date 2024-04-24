@@ -2,6 +2,7 @@ package com.nuncamaria.navigation.appnavhostconfig
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.LocationCity
+import androidx.compose.material.icons.outlined.People
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Tv
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -26,4 +27,12 @@ object Locations : TopLevelDestination {
     override val icon = Icons.Outlined.LocationCity
     override val label = "Locations"
     override val route = DestinationViewRoute.LOCATIONS.routeId
+}
+
+
+object People : TopLevelDestination {
+    override val id = 3
+    override val icon = Icons.Outlined.People
+    override val label = "People"
+    override val route = DestinationViewRoute.PEOPLE.routeId
 }

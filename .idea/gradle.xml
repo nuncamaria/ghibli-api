@@ -28,6 +28,7 @@
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/films" />
             <option value="$PROJECT_DIR$/locations" />
+            <option value="$PROJECT_DIR$/people" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
