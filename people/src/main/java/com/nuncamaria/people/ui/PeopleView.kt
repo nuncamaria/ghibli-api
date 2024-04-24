@@ -3,12 +3,10 @@ package com.nuncamaria.people.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nuncamaria.people.domain.model.PersonModel
+import com.nuncamaria.ui.theme.Colors
 import com.nuncamaria.ui.theme.Spacing
 import com.nuncamaria.ui.theme.Typography
 import com.nuncamaria.ui.utils.UiState
@@ -31,7 +30,7 @@ fun PeopleView() {
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = Spacing.md),
-        color = MaterialTheme.colorScheme.background
+        color = Colors.transparent
     ) {
         when (people.value) {
             UiState.Idle -> {}
@@ -58,7 +57,6 @@ fun PeopleViewContent(locations: List<PersonModel>) {
         LazyRow(horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
             items(locations) {
                 Card(
-                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(modifier = Modifier.padding(Spacing.md)) {
                         Text(text = it.name)

@@ -26,6 +26,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.nuncamaria.films.domain.model.FilmModel
+import com.nuncamaria.ui.theme.Colors
 import com.nuncamaria.ui.theme.Spacing
 import com.nuncamaria.ui.theme.Typography
 import com.nuncamaria.ui.utils.UiState
@@ -41,7 +42,7 @@ fun FilmsView() {
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = Spacing.md),
-        color = MaterialTheme.colorScheme.background
+        color = Colors.transparent
     ) {
         when (films.value) {
             UiState.Idle -> {}

@@ -16,6 +16,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nuncamaria.locations.domain.model.LocationModel
+import com.nuncamaria.ui.theme.Colors
 import com.nuncamaria.ui.theme.Spacing
 import com.nuncamaria.ui.theme.Typography
 import com.nuncamaria.ui.utils.UiState
@@ -31,7 +32,7 @@ fun LocationsView() {
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = Spacing.md),
-        color = MaterialTheme.colorScheme.background
+        color = Colors.transparent
     ) {
         when (locations.value) {
             UiState.Idle -> {}

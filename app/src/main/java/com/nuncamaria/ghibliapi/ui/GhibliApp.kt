@@ -1,5 +1,6 @@
 package com.nuncamaria.ghibliapi.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,6 +11,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,6 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import com.nuncamaria.navigation.appnavhostconfig.GhibliAppState
+import com.nuncamaria.ui.theme.Colors
+import com.nuncamaria.ui.theme.gradient.backgroundRadialGradient
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,11 +33,20 @@ fun GhibliApp(appState: GhibliAppState, content: @Composable () -> Unit) {
 
     Scaffold(
         modifier = Modifier
+            .background(backgroundRadialGradient)
             .fillMaxSize()
             .nestedScroll(scrollBehaviorPinned.nestedScrollConnection),
+        containerColor = Colors.transparent,
         topBar = {
             TopAppBar(
                 title = { Text(text = "Ghibli World") },
+                colors = TopAppBarColors(
+                    containerColor = Color.Unspecified,
+                    scrolledContainerColor = Color.White,
+                    navigationIconContentColor = Colors.neutral100,
+                    titleContentColor = Colors.neutral100,
+                    actionIconContentColor = Colors.neutral100
+                ),
                 scrollBehavior = scrollBehaviorPinned
             )
         },
@@ -42,7 +55,7 @@ fun GhibliApp(appState: GhibliAppState, content: @Composable () -> Unit) {
             val items = appState.topLevelDestinations
 
             if (appState.shouldShowBottomBar) {
-                NavigationBar(containerColor = Color.Unspecified) {
+                NavigationBar(containerColor = Color.White) {
                     items.forEach { item ->
                         NavigationBarItem(
                             icon = { Icon(item.icon, contentDescription = item.label) },
