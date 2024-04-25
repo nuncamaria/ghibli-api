@@ -47,9 +47,9 @@ val Typography = Typography(
     headlineSmall = TextStyle(
         fontFamily = Kyn,
         fontWeight = FontWeight.Medium,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp
     ),
     titleLarge = TextStyle(
         fontFamily = Kyn,

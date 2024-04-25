@@ -19,12 +19,12 @@ val backgroundRadialGradient = object : ShaderBrush() {
     override fun createShader(size: Size): Shader {
         val maxWidth = size.width
         val maxHeight = size.height
-        val maxDimension = size.maxDimension
+        val minDimension = size.minDimension
 
         return RadialGradientShader(
-            colors = listOf(Colors.secondary10, Colors.primary10),
+            colors = listOf(Colors.success20, Colors.secondary20),
             center = Offset(maxWidth, maxHeight),
-            radius = maxDimension / 1F,
+            radius = minDimension / COLOR_STOP_MIDDLE,
             colorStops = listOf(COLOR_STOP_FIRST, COLOR_STOP_LAST)
         )
     }

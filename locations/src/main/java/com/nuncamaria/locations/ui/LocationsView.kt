@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -60,10 +60,14 @@ fun LocationsViewContent(locations: List<LocationModel>) {
 
         items(locations) {
             Card(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.outlinedCardColors()
             ) {
                 Column(modifier = Modifier.padding(Spacing.md)) {
-                    Text(text = it.name)
+                    Text(
+                        text = it.name,
+                        style = Typography.headlineSmall
+                    )
                     Text(text = it.climate)
                     Text(text = it.terrain)
                 }

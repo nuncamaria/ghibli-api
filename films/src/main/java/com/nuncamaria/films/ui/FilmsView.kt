@@ -1,5 +1,7 @@
 package com.nuncamaria.films.ui
 
+import android.content.Intent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,7 +13,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.nuncamaria.films.domain.model.FilmModel
+import com.nuncamaria.films.ui.filmdetail.FilmDetailsActivity
 import com.nuncamaria.ui.theme.Colors
 import com.nuncamaria.ui.theme.Spacing
 import com.nuncamaria.ui.theme.Typography
@@ -38,6 +42,8 @@ fun FilmsView() {
     val viewModel = hiltViewModel<FilmsViewModel>()
     val films = viewModel.films.collectAsState()
 
+    val ctx = LocalContext.current
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -47,7 +53,14 @@ fun FilmsView() {
         when (films.value) {
             UiState.Idle -> {}
             UiState.Loading -> LoadingView()
-            is UiState.Success -> FilmsViewContent((films.value as UiState.Success<List<FilmModel>>).data)
+            is UiState.Success -> {
+                FilmsViewContent(
+                    films = (films.value as UiState.Success<List<FilmModel>>).data
+                ) {
+                    ctx.startActivity(Intent(ctx, FilmDetailsActivity::class.java))
+                }
+            }
+
             is UiState.Error -> {
                 ErrorView((films.value as UiState.Error).message) {
                     viewModel.getFilms()
@@ -58,7 +71,7 @@ fun FilmsView() {
 }
 
 @Composable
-fun FilmsViewContent(films: List<FilmModel>) {
+fun FilmsViewContent(films: List<FilmModel>, onFilmClick: () -> Unit) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
 
@@ -71,7 +84,7 @@ fun FilmsViewContent(films: List<FilmModel>) {
             Column(verticalArrangement = Arrangement.spacedBy(Spacing.md)) {
                 Text(
                     modifier = Modifier.padding(top = Spacing.md),
-                    text = "Find info about your favorite Ghibli films",
+                    text = "Find your favorite Ghibli films",
                     style = Typography.displayMedium
                 )
 
@@ -88,24 +101,36 @@ fun FilmsViewContent(films: List<FilmModel>) {
         }
 
         items(films) {
+            Card(
+                modifier = Modifier.clickable { onFilmClick() },
+                colors = CardDefaults.outlinedCardColors()
+            ) {
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(it.image)
+                        .crossfade(true)
+                        .build(),
+                    contentDescription = it.title,
+                    modifier = Modifier.fillMaxWidth(),
+                    alignment = Alignment.Center,
+                    contentScale = ContentScale.Crop
+                )
 
-            Surface {
-                Column {
-                    AsyncImage(
-                        model = ImageRequest.Builder(LocalContext.current)
-                            .data(it.image)
-                            .crossfade(true)
-                            .build(),
-                        contentDescription = it.title,
-                        modifier = Modifier.fillMaxWidth(),
-                        alignment = Alignment.Center,
-                        contentScale = ContentScale.Crop
+                Column(
+                    modifier = Modifier.padding(Spacing.md),
+                    verticalArrangement = Arrangement.spacedBy(Spacing.xxs)
+                ) {
+                    Text(
+                        text = it.title,
+                        style = Typography.headlineSmall
                     )
 
-                    Text(text = it.title)
-
                     Row {
-                        Text(text = "${it.releaseDate} · Score ${it.rtScore}")
+                        Text(
+                            text = "${it.releaseDate} · ${it.rtScore} ★",
+                            color = Colors.neutral60,
+                            style = Typography.bodyMedium
+                        )
                     }
                 }
             }

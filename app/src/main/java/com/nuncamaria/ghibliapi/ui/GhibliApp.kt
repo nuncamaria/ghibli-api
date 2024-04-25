@@ -51,10 +51,11 @@ fun GhibliApp(appState: GhibliAppState, content: @Composable () -> Unit) {
             )
         },
         bottomBar = {
-            var selectedItem by remember { mutableStateOf(appState.currentTopLevelDestination) }
-            val items = appState.topLevelDestinations
-
             if (appState.shouldShowBottomBar) {
+
+                var selectedItem by remember { mutableStateOf(appState.currentTopLevelDestination) }
+                val items = appState.topLevelDestinations
+
                 NavigationBar(containerColor = Color.White) {
                     items.forEach { item ->
                         NavigationBarItem(
