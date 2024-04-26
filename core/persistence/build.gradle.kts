@@ -1,10 +1,11 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.nuncamaria.network"
+    namespace = "com.nuncamaria.persistence"
     compileSdk = ProjectConfig.COMPILE_SDK
 
     defaultConfig {
@@ -34,14 +35,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
 
-    api(libs.ktor.client.core)
-    api(libs.ktor.client.android)
-    api(libs.ktor.client.okhttp)
-    api(libs.ktor.client.content.negotiation)
-    api(libs.ktor.client.logging)
-    api(libs.ktor.client.auth)
-    api(libs.ktor.serialization.kotlinx.json)
-    testImplementation(libs.ktor.client.mock)
+    implementation(libs.room)
+    annotationProcessor(libs.room.compiler)
+    kapt(libs.room.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
